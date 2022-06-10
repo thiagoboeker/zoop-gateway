@@ -7,6 +7,8 @@ defmodule ZoopGatewayWeb.Router do
 
   scope "/api", ZoopGatewayWeb do
     pipe_through :api
+
+    post "/checkout", Checkout, :checkout
   end
 
   # Enables LiveDashboard only for development

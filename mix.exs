@@ -41,7 +41,8 @@ defmodule ZoopGateway.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:poolboy, "~> 1.5.1"},
-      {:httpoison, "~> 1.8"}
+      {:httpoison, "~> 1.8"},
+      {:cors_plug, "~> 3.0"}
     ]
   end
 
