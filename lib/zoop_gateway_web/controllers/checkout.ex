@@ -2,6 +2,7 @@ defmodule ZoopGatewayWeb.Checkout do
   use ZoopGatewayWeb, :controller
 
   def checkout(conn, %{"t1" => "pix"} = params) do
+    IO.inspect(params)
     :poolboy.transaction(:transaction_worker, fn pid ->
       GenServer.call(pid, {:pix, params})
     end)

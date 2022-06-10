@@ -35,6 +35,7 @@ defmodule ZoopGateway.Worker do
   end
 
   def handle_call({:pix, data} = payload, _from, state) do
+    IO.inspect(data)
     handle_transaction(split_rules(data), payload, _from, state)
   end
 
