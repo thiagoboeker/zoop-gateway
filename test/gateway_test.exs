@@ -4,6 +4,7 @@ defmodule ZoopGateway.GatewayTest do
   @timeout 30_000
   @marketplace_id "cbb404b794094f0081c81bfacc4ceae5"
   @seller_id "cb337326376b485daeed16646953da07"
+  @buyer_id "b3a45a88dc154004aa435b2fe4d3616f"
   @credit_card %{
     card_number: "4539003370725497",
     holder_name: "Julio Alvarenga",

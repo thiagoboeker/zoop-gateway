@@ -8,6 +8,13 @@ defmodule ZoopGatewayWeb.Checkout do
     |> checkout(conn, params)
   end
 
+  def checkout(conn, %{"t1" => "boleto"} = params) do
+    :poolboy.transaction(:transaction_worker, fn pid ->
+      GenServer.call(pid, {:boleto, params})
+    end)
+    |> checkout(conn, params)
+  end
+
   def checkout(conn, params) do
     :poolboy.transaction(:transaction_worker, fn pid ->
       GenServer.call(pid, {:transaction, params})

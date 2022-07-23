@@ -21,6 +21,9 @@ defmodule ZoopGateway.GatewayTest do
     "tax" => 0,
     "coupon_discount" => 0,
     "total" => 160.11,
+    "installments" => %{
+      "1" => 1
+    },
     "card" => %{
       "card_number" => "4539003370725497",
       "holder_name" => "Julio Alvarenga",
@@ -31,12 +34,15 @@ defmodule ZoopGateway.GatewayTest do
     "quantity" => [
         %{
             "id" => 9,
+            "shipping_cost" => 500,
             "url" => "https =>//m.media-amazon.com/images/I/517DTupFR3L._AC_SX466_.jpg",
             "quantity" => 1,
-            "value" => 120,
+            "price" => 6560,
             "name" => "Racao Pedigree Adulto",
-            "seller" => "Aldeia PET",
-            "seller_id" => @alt_seller_id,
+            "seller" => %{
+                "zoop" => "c29cbb91a5fb49c192dddf34fe38e1f3"
+            },
+            "seller_id" => 1,
             "description" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur"
         }
     ],
@@ -72,13 +78,17 @@ defmodule ZoopGateway.GatewayTest do
         "email" => "davidiasdesousa@gmail.com",
         "phone_no" => "+55 27 88889 9999",
         "address" => "Rua Rio Grande do Norte",
+        "number" => "105",
+        "complement" => "Casa",
+        "cpf" => "13206867703",
+        "district" => "Conquista",
         "address_ids" => %{
             "country_id" => "31",
             "state_id" => "7",
             "city_id" => "4"
         },
         "country" => "Brazil",
-        "state" => "Espírito Santo",
+        "state" => "ES",
         "city" => "Alegre",
         "latitude" => nil,
         "longitude" => nil,
@@ -100,6 +110,13 @@ defmodule ZoopGateway.GatewayTest do
   test "PIX" do
     build_conn()
     |> post("/api/checkout?t1=pix", @payload)
+    |> json_response(200)
+    |> IO.inspect
+  end
+
+  test "BOLETO" do
+    build_conn()
+    |> post("/api/checkout?t1=boleto", @payload)
     |> json_response(200)
     |> IO.inspect
   end

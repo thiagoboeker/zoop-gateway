@@ -17,7 +17,7 @@ defmodule Mix.Tasks.GenPayload do
               "id" => 9,
               "url" => "https =>//m.media-amazon.com/images/I/517DTupFR3L._AC_SX466_.jpg",
               "quantity" => 1,
-              "value" => 120,
+              "value" => 500,
               "name" => "Racao Pedigree Adulto",
               "seller" => "Aldeia PET",
               "seller_id" => @alt_seller_id,
